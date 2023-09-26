@@ -1,4 +1,7 @@
- vector<vector<int> > fourSum(vector<int> &arr, int x) {
+PROBLEM LINK :
+https://practice.geeksforgeeks.org/problems/find-all-four-sum-numbers1732/1
+
+vector<vector<int> > fourSum(vector<int> &arr, int x) {
         int n= arr.size();
         sort(arr.begin(),arr.end());
         vector<vector<int>> ans;
@@ -23,3 +26,4 @@
        }
         
     return ans;}
+
