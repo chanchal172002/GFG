@@ -27,3 +27,5 @@ vector<vector<int> > fourSum(vector<int> &arr, int x) {
         
     return ans;}
 
+Time Complexity : O(N3)
+Space Complexity : O(N)
