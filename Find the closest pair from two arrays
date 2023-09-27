@@ -1,0 +1,30 @@
+***PROBLEM LINK**** 
+https://practice.geeksforgeeks.org/problems/find-the-closest-pair-from-two-arrays4215/1
+
+
+vector<int> printClosest(int arr[], int brr[], int n, int m, int x) {
+       sort(arr,arr+n);
+       sort(brr,brr+m);
+       int i=0,j=m-1;
+       int closestSum=INT_MAX;
+       vector<int> result;
+         while (i < n && j >= 0) {
+        int currentSum = arr[i] + brr[j];
+        int diff = abs(currentSum - x);
+
+        if (diff < closestSum) {
+            closestSum = diff;
+            result = {arr[i], brr[j]};
+        }
+
+        if (currentSum > x) {
+            j--;
+        } else {
+            i++;
+        }
+    }
+     return result;  
+    }
+
+Time Complexity : O(N+M)
+Space Complexity : O(1)
