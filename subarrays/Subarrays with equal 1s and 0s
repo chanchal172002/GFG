@@ -1,0 +1,25 @@
+    ******PROBLEM LINK******
+    https://practice.geeksforgeeks.org/problems/count-subarrays-with-equal-number-of-1s-and-0s-1587115620/0
+    
+    long long int countSubarrWithEqualZeroAndOne(int arr[], int n)
+    {
+       for(int i=0;i<n;i++){
+           if(arr[i]==0) arr[i]=-1;
+       }
+       unordered_map<long long ,long long > m;
+       long long int ans=0,sum=0;
+       
+       for(int i=0;i<n;i++){
+           sum+=arr[i];
+           if(sum==0)ans++;
+           if(m.find(sum)!=m.end()){
+               auto it= m.find(sum);
+               ans+=it->second;
+           }
+           m[sum]++;
+       }
+       return ans;
+    }
+
+    Time Complexity : O(N)
+    Space Complexity : O(N)
