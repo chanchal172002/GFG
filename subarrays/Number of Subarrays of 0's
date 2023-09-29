@@ -1,0 +1,21 @@
+******PROBLEM LINK******
+https://practice.geeksforgeeks.org/problems/number-of-subarrays-of-0s--170647/1?page=1&sortBy=submissions
+
+long long int no_of_subarrays(int n, vector<int> &arr) {
+       unordered_map<long long ,long long > m;
+       long long int ans=0,sum=0;
+       
+       for(int i=0;i<n;i++){
+           sum+=arr[i];
+           if(sum==0)ans++;
+           if(m.find(sum)!=m.end()){
+               auto it= m.find(sum);
+               ans+=it->second;
+           }
+           m[sum]++;
+       }
+       return ans;
+}
+
+Time Complexity : O(N)
+Space Complexity :O(1)
