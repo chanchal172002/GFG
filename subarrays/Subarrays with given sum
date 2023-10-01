@@ -1,0 +1,28 @@
+********PROBLEM LINK*************
+https://practice.geeksforgeeks.org/problems/subarray-range-with-given-sum2804/1?page=1&difficulty[]=0&difficulty[]=1&difficulty[]=2&sortBy=submissions
+
+*****QUESTION*********
+Given an unsorted array arr[] of N integers and a sum. The task is to count the number of subarrays which add to a given number.
+
+  
+    int subArraySum(int arr[], int n, int k)
+    { int sum=0;
+    int ans=0;
+    	map<int,int>m;
+    	
+    	for(int i=0;i<n;i++){
+    	    sum+=arr[i];
+    	    if(sum==k) ans++;
+    	    if(m.find(sum-k)!=m.end()){
+    	        
+    	        ans+=m[sum-k];
+    	    }
+    	    m[sum]++;
+    	    
+    	}
+    	return ans;
+    }
+
+
+   TC: O(N)
+   SC: O(N) 
