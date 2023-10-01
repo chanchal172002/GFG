@@ -1,0 +1,43 @@
+**********PROBLEM LINK**********
+https://practice.geeksforgeeks.org/problems/largest-sum-subarray-of-size-at-least-k3121/1?page=2&difficulty[]=0&difficulty[]=1&difficulty[]=2&sortBy=submissions
+
+
+
+long long int maxSumWithK(long long int arr[], long long int n, long long int k) 
+{
+    vector<long long int> maxsum(n);
+    
+    long long int currsum=0;
+    long long int sum=-1e9;
+    
+    for(int i=0;i<n;i++){
+         currsum+=arr[i];
+         sum= max(currsum,sum);
+         maxsum[i]=max(currsum,arr[i]);
+         
+         if(currsum<0) currsum=0;
+    }
+  
+    
+     currsum=0;
+    
+     long long int i, j=0;    
+    for(i=0;i<k;i++){
+        currsum+=arr[i];
+    }
+    long long int ans=currsum;
+    
+    while(i<n){
+
+        currsum-=arr[j];
+        currsum+=arr[i];
+      ans= max(ans,max(currsum,currsum+maxsum[j]));
+
+        j++; i++;
+        
+    }
+    return ans;
+}
+
+TC: O(N)
+SC: O(N)
