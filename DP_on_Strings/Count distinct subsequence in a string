@@ -1,0 +1,28 @@
+*****Problem Link******
+https://practice.geeksforgeeks.org/problems/number-of-distinct-subsequences0909/1
+
+****Video Solution (Pepcoding)*******
+https://www.youtube.com/watch?v=9UEHPiK53BA
+
+
+int mod=1e9+7;
+
+	int distinctSubsequences(string s)
+	{    
+	    int n=s.size();
+	    map<char,int> m;
+	    vector<int> dp(n+1,0);
+	    dp[0]=1;
+	    for(int i=1;i<=n;i++){
+	        dp[i]=(2*dp[i-1])%mod;
+	        if(m.find(s[i-1])!=m.end()){
+	            int x=m[s[i-1]]-1;
+	            dp[i]=((dp[i]%mod-dp[x]%mod)+mod)%mod;
+	        }
+	        m[s[i-1]]=i;
+	    }
+	return dp[n];
+	}
+
+    TC: O(N)
+    SC: O(N)
