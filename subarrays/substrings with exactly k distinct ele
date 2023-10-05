@@ -1,0 +1,36 @@
+*******PROBLEM LINK********
+
+
+ long long int helper(string &s, int k){
+      
+      int arr[26]={0};
+        long long int ans=0;
+      int count=0;
+        int j=0;
+        
+       for (int i=0;i< s.size();i++) {
+        arr[s[i]-'a']++;
+        if(arr[s[i]-'a']==1) count++;
+        while (count > k) {
+            if(arr[s[j]-'a']>0) arr[s[j]-'a']--;
+            if (arr[s[j]-'a'] == 0) {
+                count--;
+            }
+            j++;
+        }
+        ans += (i - j + 1);
+
+     
+    }
+        
+        return ans;
+  }
+  
+    long long int substrCount (string &s, int k) {
+        
+        
+    	return helper(s,k)-helper(s,k-1);
+    }
+
+TC : O(N)
+SC : o(1)
