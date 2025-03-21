@@ -24,3 +24,42 @@
         sort(safe.begin(),safe.end());
         return safe;
     }
+
+
+//using BFS & graph reversal technique as we need outdegree
+
+vector<int> eventualSafeNodes(vector<vector<int>>& graph) {
+        int n = graph.size();
+        vector <int> outdegree (n,0);
+        vector<vector<int>>reverse_graph(n);
+        for(int i=0;i<n;i++){
+            for(auto &j : graph[i]){
+                reverse_graph[j].push_back(i);
+
+            }
+        }
+        vector<int>safe;
+        queue <int> q;
+        for(int i = 0; i < n; i++){
+            outdegree[i]=graph[i].size();
+        }
+        for(int i = 0; i<n; i++){
+            if(outdegree[i]==0){
+                q.push(i);
+            }
+        }
+        while(!q.empty()){
+            int node = q.front();
+            q.pop();
+            for(auto &i : reverse_graph[node]){
+                outdegree[i]--;
+                if(outdegree[i]==0){
+                    q.push(i);
+                }
+            }
+        }
+    for(int i=0;i<n;i++){
+        if(outdegree[i]==0) safe.push_back(i);
+    }
+    return safe;
+    }
